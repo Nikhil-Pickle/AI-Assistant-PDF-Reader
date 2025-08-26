@@ -3,11 +3,11 @@
 Small prototype: PDFs -> PII scrub -> chunk -> embed (nomic-embed-text) -> Chroma vector DB -> retrieve -> LLM (Ollama). Answers cite source PDFs.
 
 ## Run
-ollama pull llama3.1:8b
-ollama pull nomic-embed-text
-pip install pypdf chromadb requests
-python ingest.py
-python query.py
+ollama pull llama3.1:8b  
+ollama pull nomic-embed-text   
+pip install pypdf chromadb requests  
+python ingest.py  
+python query.py  
 
 ## Azure Mapping
 - Storage: Azure Data Lake
