@@ -7,6 +7,7 @@ This project is split into two possible solutions- a local solution and a cloud 
 
 Lawyers documents are sourced from the following dataset:
 Contract Understanding Atticus Dataset (CUAD): https://www.atticusprojectai.org/cuad
+The CUAD_V1.zip dataset, using PDF files from CUAD_v1.zip\CUAD_v1\full_contract_pdf\Part_I\License_Agreements
 
 
 ## Local Model Solution
