@@ -1,4 +1,4 @@
-# Lawyer AI Assistant (Local)
+# Lawyer AI Assistant
 
 Small prototype: PDFs -> PII scrub -> chunk -> embed (nomic-embed-text) -> Chroma vector DB -> retrieve -> LLM (Ollama). Answers cite source PDFs.
 
