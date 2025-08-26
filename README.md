@@ -48,6 +48,11 @@ python query.py
 ---
 
 
+Final solution image:
+![screenshot evidence](https://raw.githubusercontent.com/Nikhil-Pickle/AI-Assistant-PDF-Reader/refs/heads/main/Screenshot%202025-08-26%20192915.png)
+
+
+
 ## Azure Cloud Solution
 
 ## Azure Mapping
