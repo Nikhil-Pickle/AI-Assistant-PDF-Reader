@@ -8,7 +8,7 @@ To keep scope limited, this version only:
 
 * Processes **PDFs** (not yet .txt, .html, etc.)
 * Performs basic **PII scrubbing** (emails, phone numbers, SSNs)
-* Runs entirely **locally** using [Ollama](https://ollama.ai) for privacy
+* Runs entirely **locally** using [Ollama](https://ollama.ai) for privacy, or through the Azure AI ecosystem as a cloud solution
 
 ---
 
