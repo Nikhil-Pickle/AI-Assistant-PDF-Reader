@@ -1,26 +1,51 @@
-# Lawyer AI Assistant
+# AI Assistant PDF Reader
 
-Small prototype: PDFs -> PII scrub -> chunk -> embed (nomic-embed-text) -> Chroma vector DB -> retrieve -> LLM (Ollama). Answers cite source PDFs.
+A lightweight **LLM + RAG prototype** for answering questions about PDF documents.
 
+The demo uses legal agreements (from the [CUAD dataset](https://www.atticusprojectai.org/cuad)) as an example use case, but the pipeline works for any PDF collection.
 
-This project is split into two possible solutions- a local solution and a cloud solution.
+To keep scope limited, this version only:
 
-Lawyers documents are sourced from the following dataset:
-Contract Understanding Atticus Dataset (CUAD): https://www.atticusprojectai.org/cuad
-The CUAD_V1.zip dataset, using PDF files from CUAD_v1.zip\CUAD_v1\full_contract_pdf\Part_I\License_Agreements
+* Processes **PDFs** (not yet .txt, .html, etc.)
+* Performs basic **PII scrubbing** (emails, phone numbers, SSNs)
+* Runs entirely **locally** using [Ollama](https://ollama.ai) for privacy
 
+---
+
+## How It Works
+
+1. **Ingest:** PDFs → scrub PII → chunk text → embed with `nomic-embed-text`
+2. **Store:** Save embeddings + metadata into a Chroma vector database
+3. **Query:** Retrieve top matches → feed into Ollama LLM → generate grounded answers (with citations)
+
+---
 
 ## Local Model Solution
 
+### Prerequisites
 
+* [Ollama](https://ollama.ai) installed and running
+* Python 3.9+
+* Your PDFs placed inside the `docs/` folder
 
-## Run
-ollama pull llama3.1:8b  
-ollama pull nomic-embed-text   
-pip install pypdf chromadb requests  
-python ingest.py  
-python query.py  
+### Setup & Run
 
+```bash
+# Pull models
+ollama pull llama3.1:8b
+ollama pull nomic-embed-text
+
+# Install dependencies
+pip install pypdf chromadb requests
+
+# Ingest PDFs into the vector store
+python ingest.py
+
+# Ask questions against your documents
+python query.py
+```
+
+---
 
 
 ## Azure Cloud Solution
