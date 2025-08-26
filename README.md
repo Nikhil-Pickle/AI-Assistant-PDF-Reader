@@ -33,6 +33,18 @@ python query.py
 - LLM: Azure OpenAI Service
 - Governance/Secrets: Purview / Key Vault
 
+
+## Limitations
+- Chunked retrieval may return partial long sections.
+- Basic PII masking (emails/phones/SSNs) only.
+- Local, single-user prototype; no auth/monitoring.
+- Uses a small local LLM (Ollama); quality < large cloud models.
+- Re-run `ingest.py` to refresh the index.
+
+## Azure Mapping (for production)
+Data Lake (storage) • Data Factory/Databricks (ETL/PII) • Cognitive Search (vectors) • Azure OpenAI (LLM) • Purview/Key Vault (governance/secrets).
+
+
 ## Notes
 - Shows sources for explainability
 - Basic PII masking (emails/phones/SSNs)
