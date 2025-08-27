@@ -17,7 +17,6 @@ You now have a fully functional AI assistant for your PDFs.
 
 
 📌 **Visual Overview**
-*(replace with diagram later — e.g., draw\.io export)*
 
 ![steps to use](https://raw.githubusercontent.com/Nikhil-Pickle/AI-Assistant-PDF-Reader/refs/heads/main/image.png)
 
