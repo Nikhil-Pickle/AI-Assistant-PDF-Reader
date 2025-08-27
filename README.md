@@ -152,14 +152,26 @@ But in production you’d:
 * Basic PII masking (emails/phones/SSNs) only.
 * Local, single-user prototype → no auth/monitoring.
 * Uses a small local LLM (Ollama); quality < larger cloud models.
-* Free Azure tier limits: full vector + “Bring your own data” integration requires Basic+.
+* Free Azure tier limits: full vector + “Bring your own data” integration requires a paid version of Azure.
 
 ---
 
-## ✅ Notes
+### 🔹 Prototype vs Production
 
-* Built as a **demo prototype**; production would add auth, monitoring, networking, and scaling.
-* Can be extended to more formats (.txt, .html, .docx).
+**Prototype built (this repo):**
+
+* PDFs uploaded to **Azure Blob Storage**
+* Indexed directly by **Azure AI Search** (Free tier, no transformations)
+* Queried via **Search Explorer** or REST API
+
+**Production mapping (law firm use case):**
+
+* **Orchestration:** Azure Data Factory (triggered when a lawyer uploads a file)
+* **Transforms/PII scrub:** Azure Databricks to mask names, SSNs, emails
+* **Storage zones:** Medallion Data Structure: Raw (bronze) → Clean (silver) → Search-ready JSON (gold)
+* **Retrieval:** Azure AI Search with **vector + semantic ranker** enabled
+* **LLM:** Azure OpenAI Service with “Bring Your Own Data” integration
+* **Governance/Security:** Azure Purview for lineage/classification, Key Vault for secrets
 
 ---
 
