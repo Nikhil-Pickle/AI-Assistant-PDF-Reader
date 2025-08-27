@@ -4,29 +4,34 @@ A lightweight **LLM + RAG prototype** for answering questions about PDF document
 
 The demo uses legal agreements (from the [CUAD dataset](https://www.atticusprojectai.org/cuad)) as an example use case, but the pipeline works for any PDF collection.
 
-To keep scope limited, this version only:
+---
 
-* Processes **PDFs** (not yet .txt, .html, etc.)
-* Performs basic **PII scrubbing** (emails, phone numbers, SSNs)
-* Runs entirely **locally** using [Ollama](https://ollama.ai) for privacy, or through the Azure AI ecosystem as a cloud solution
+## 🔍 How It Works
+
+1. **Ingest** – PDFs → scrub PII → chunk text → embed with `nomic-embed-text`
+2. **Store** – Save embeddings + metadata into a **Chroma** vector database
+3. **Query** – Retrieve top matches → feed into **Ollama LLM** → generate grounded answers (with citations)
+
+In other words- drop PDF files in the "docs" folder, run ingest.py, run query.py.
+You now have a fully functional AI assistant for your PDFs.
+
+
+📌 **Visual Overview**
+*(replace with diagram later — e.g., draw\.io export)*
+
+![steps to use](https://raw.githubusercontent.com/Nikhil-Pickle/AI-Assistant-PDF-Reader/refs/heads/main/image.png)
 
 ---
 
-## How It Works
+## 💻 Local Model Solution
 
-1. **Ingest:** PDFs → scrub PII → chunk text → embed with `nomic-embed-text`
-2. **Store:** Save embeddings + metadata into a Chroma vector database
-3. **Query:** Retrieve top matches → feed into Ollama LLM → generate grounded answers (with citations)
-
----
-
-## Local Model Solution
+Run everything locally for free & private experimentation.
 
 ### Prerequisites
 
 * [Ollama](https://ollama.ai) installed and running
 * Python 3.9+
-* Your PDFs placed inside the `docs/` folder
+* PDFs placed inside the `docs/` folder
 
 ### Setup & Run
 
@@ -45,37 +50,55 @@ python ingest.py
 python query.py
 ```
 
+📸 **Example run:**
+
+![example powershell output](https://raw.githubusercontent.com/Nikhil-Pickle/AI-Assistant-PDF-Reader/refs/heads/main/Screenshot%202025-08-26%20192915.png)
+
+---
+
+## ☁️ Azure Cloud (Alternative Solution)
+
+An enterprise-ready path using **Azure AI ecosystem** instead of local tools.
+
+### Azure Mapping
+
+* **Storage**: Azure Data Lake
+* **Orchestration**: Data Factory / Databricks
+* **Transform + PII**: Databricks (bronze/silver/gold)
+* **Retrieval**: Azure AI Search (formerly Cognitive Search)
+* **LLM**: Azure OpenAI Service
+* **Governance & Security**: Purview / Key Vault
+
+📌 **Architecture Diagram**
+*(replace with diagram of Azure services mapped to flow)*
+
+![azure-architecture-placeholder](https://via.placeholder.com/800x400.png?text=Azure+Architecture+Placeholder)
+
+---
+
+## ⚠️ Limitations
+
+* Chunked retrieval may return partial long sections.
+* Basic PII masking (emails/phones/SSNs) only.
+* Local, single-user prototype → no auth/monitoring.
+* Uses a small local LLM (Ollama); quality < larger cloud models.
+* Free Azure tier limits: full vector + “Bring your own data” integration requires Basic+.
+
+---
+
+## ✅ Notes
+
+* Sources shown for explainability.
+* Built as a **demo prototype**; production would add auth, monitoring, networking, and scaling.
+* Can be extended to more formats (.txt, .html, .docx).
+
 ---
 
 
-Final solution image:
-![screenshot evidence](https://raw.githubusercontent.com/Nikhil-Pickle/AI-Assistant-PDF-Reader/refs/heads/main/Screenshot%202025-08-26%20192915.png)
+## 🚀 Next Steps
 
+* Swap Ollama → Azure OpenAI for full-cloud solution
+* Enable vector + semantic ranker in Azure AI Search
+* Add simple web front-end (Streamlit or Flask) for user-friendly UI
 
-
-## Azure Cloud Solution
-
-## Azure Mapping
-- Storage: Azure Data Lake
-- Orchestration: Data Factory / Databricks
-- Transform/PII: Databricks (bronze/silver/gold)
-- Retrieval: Azure Cognitive Search (vectors)
-- LLM: Azure OpenAI Service
-- Governance/Secrets: Purview / Key Vault
-
-
-## Limitations
-- Chunked retrieval may return partial long sections.
-- Basic PII masking (emails/phones/SSNs) only.
-- Local, single-user prototype; no auth/monitoring.
-- Uses a small local LLM (Ollama); quality < large cloud models.
-- Re-run `ingest.py` to refresh the index.
-
-## Azure Mapping (for production)
-Data Lake (storage) • Data Factory/Databricks (ETL/PII) • Cognitive Search (vectors) • Azure OpenAI (LLM) • Purview/Key Vault (governance/secrets).
-
-
-## Notes
-- Shows sources for explainability
-- Basic PII masking (emails/phones/SSNs)
-- Demo only; production would add auth, networking, monitoring
+---
