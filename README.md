@@ -32,6 +32,10 @@ Run everything locally for free & private experimentation.
 
 ### Setup & Run
 
+Firstly, download "ingest.py" and "query.py" from github, then create an empty folder "docs".
+
+Run the following commands in terminal or powershell:  
+
 ```bash
 # Pull models
 ollama pull llama3.1:8b
