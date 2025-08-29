@@ -152,6 +152,7 @@ But in production you’d:
 
 ## ⚠️ Limitations
 
+* Retrieval: Local prototype uses semantic vector search; Azure demo is keyword-only on the free tier. Full semantic + hybrid search requires paid Azure tier.
 * Basic PII masking (emails/phones/SSNs) only.
 * Local, single-user prototype → no auth/monitoring.
 * Uses a small local LLM (Ollama); quality < larger cloud models.
