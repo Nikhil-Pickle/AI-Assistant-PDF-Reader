@@ -118,7 +118,6 @@ No Databricks/Data Factory were used here — just direct indexing.
 
 You now have a search-ready index.
 
-**Option A — No-code:**
 
 * Use **Search Explorer** inside the Azure Portal.
 * Try queries like:
