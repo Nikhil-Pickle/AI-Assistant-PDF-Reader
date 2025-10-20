@@ -178,12 +178,3 @@ But in production you’d:
 * **Governance/Security:** Azure Purview for lineage/classification, Key Vault for secrets
 
 ---
-
-
-## 🚀 Next Steps
-
-* Swap Ollama → Azure OpenAI for full-cloud solution
-* Enable vector + semantic ranker in Azure AI Search
-* Add simple web front-end (Streamlit or Flask) for user-friendly UI
-
----
